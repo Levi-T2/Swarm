@@ -117,29 +117,34 @@ let userInput = ''
 function attackPeople(location) {
 
     userInput += location
-    const victims = people.filter(people => people.location == location && people.picture != "🦇")
+    const nonHunters = people.filter(people => !people.isHunter)
+    const victims = people.filter(people => people.location == location && people.picture != "🦇" && nonHunters)
+
+    console.log('this is the hunter', !nonHunters)
+
+    const randomPeopleIndex = Math.floor(Math.random() * victims.length)
+
+    const randomVictim = victims[randomPeopleIndex]
 
     console.log(location, 'these are the victims', victims)
+    console.log(randomVictim)
 
-    if (victims) {
-        victims.forEach(victim => victim.picture = '🦇')
+    if (randomVictim) {
+        randomVictim.picture = '🦇'
     }
 
-    console.log(location, 'bats', victims)
+    // console.log(location, 'bats', victims)
 
 
     drawPeople()
     // updateUserInput()
 
-    // const nonHunters = people.filter(people => !people.isHunter)
     // const potentialVictims = people.filter(people => people.location == nonHunters.location)
 
     // console.log(nonHunters)
     // console.log(potentialVictims)
 
-    // const randomPeopleIndex = Math.floor(Math.random() * potentialVictims.length)
 
-    // const randomVictim = potentialVictims[randomPeopleIndex]
 
 }
 
